@@ -1,0 +1,47 @@
+﻿@model MVC.ViewModels.UsuariosViewModel
+@{
+    ViewBag.Title = "Editar";
+}
+
+
+<h2>Edotar</h2>
+
+
+@using (Html.BeginForm("Edit", "Usuarios", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-12">
+            @Html.HiddenFor(p => p.IdUsuario);
+            <div class="form-group">
+                <!-- Creo label   -->
+                @Html.LabelFor(p => p.Nombres):
+
+                @Html.TextBoxFor(p => p.Nombres, "", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(p => p.Apellidos):
+                @Html.TextBoxFor(p => p.Apellidos, "", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(p => p.Dui):
+                @Html.TextBoxFor(p => p.Dui, "", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(p => p.TelefonoContacto):
+                @Html.TextBoxFor(p => p.Dui, "", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(p => p.CorreoElectronico):
+                @Html.TextBoxFor(p => p.Dui, "", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(p => p.Contrasena):
+                @Html.TextBoxFor(p => p.Dui, "", new { @class = "form-control", @type = "password" })
+            </div>
+            <br />
+            <div style="text-align:center">
+                <input type="submit" class="btn btn-outline-success" value="Editar" />
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "Usuarios";
+}
+
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Peliculas</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item ">
+                <a class="nav-link" href="#">Peliculas </a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="@Url.Action("Index","Usuarios")">Usuarios <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Index","Rentas")">Rentas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Index","Ventas")">Compras</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("LogOff","Home")">Cerrar Sesion</a>
+            </li>
+        </ul>
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Buscar</button>
+        </form>
+    </div>
+</nav>
+
+<center><h2>Datos Usuarios</h2></center>
+<!-- Boton Nuevo  -->
+<div class=" row" style="text-align:right; padding:5px">
+    <div class="col-md-12">
+        <input type="button" class="btn btn-primary" value="Nuevo Usuario" onclick="document.location.href='@Url.Content("~/Usuarios/CreateView")'" />
+    </div>
+</div>
+<!-- Creo tabla  -->
+<div class="row">
+    <div class="col-md-12">
+
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre Completo</th>
+                    <th>DUI</th>
+                    <th>Telefono de Contacto</th>
+                    <th>Correo Electronico</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <!-- Recorro el modelo para imprimir datos -->
+            @foreach (var elemento in Model)
+            {
+                <tr>
+                    <td>@elemento.IdUsuario </td>
+                    <td>@elemento.NombreCompleto</td>
+                    <td>@elemento.Dui</td>
+                    <td>@elemento.TelefonoContacto</td>
+                    <td>@elemento.CorreoElectronico</td>
+                    <td>
+                        <!-- Botones Editar Eliminar  -->
+                        <input type="button" value="Editar" class="btn btn-outline-success" onclick="document.location.href='@Url.Content("~/Usuarios/Details/" + elemento.IdUsuario)'" />
+                        <input type="button" class="btn btn-outline-danger" value="Eliminar" onclick="jsEliminar(@elemento.IdUsuario);"/>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+<script>
+    function jsEliminar(id) {
+        if (confirm("Quieres Eliminar El Registro?")) {
+            url = "@Url.Content("~/Usuarios/Delete")" + "/"+id;
+
+            $.post(url, function (data) {
+
+                if (data=="ok") {
+                document.location.href = "@Url.Content("~/Usuarios/Index")"
+                console.log("Exito");
+                } else {
+                    alert("No se pudo Eliminar El registro");
+                }
+            })
+        }
+    }
+</script>

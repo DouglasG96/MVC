@@ -1,0 +1,27 @@
+﻿@model MVC.ViewModels.RentasViewModel
+@{
+    ViewBag.Title = "Rentar Pelicula";
+}
+
+
+<h2>Crear Renta</h2>
+
+
+@using (Html.BeginForm("Create", "Rentas", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-12">
+            @Html.HiddenFor(p => p.IdPelicula);
+            <div class="form-group">
+                <!-- Creo label   -->
+                @Html.LabelFor(p => p.Cantidad):
+
+                @Html.TextBoxFor(p => p.Cantidad, "", new { @class = "form-control" })
+            </div>
+            <br />
+            <div style="text-align:center">
+                <input type="submit" class="btn btn-outline-success" value="Rentar" />
+            </div>
+        </div>
+    </div>
+}

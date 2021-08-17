@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Peliculas";
+}
+@{
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Peliculas</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Peliculas <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index","Usuarios")">Usuarios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index","Rentas")">Rentas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Index","Ventas")">Compras</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("LogOff","Home")">Cerrar Sesion</a>
+                </li>
+            </ul>
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+                <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Buscar</button>
+            </form>
+        </div>
+    </nav>
+    <h3>Peliculas</h3>
+
+    @foreach (var elemento in Model)
+    {
+        <div class="col-md-6 offset-md-3">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="@elemento.Imagen" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">@elemento.Titulo</h5>
+                    <p class="card-text">
+                        <ul>
+                            <li><b>Fecha de Estreno:</b>  @elemento.FechaEstreno</li>
+                            <li><b>Clasificacion:</b> @elemento.Clasificacion</li>
+                            <li><b>Precio:</b> $ @elemento.Precio</li>
+                        </ul>
+                    </p>
+                    <a href="#" class="btn btn-outline-primary" onclick="document.location.href='@Url.Content("~/Rentas/Details/" + elemento.IdPelicula)'" >Rentar</a>
+                    <a href="#" class="btn btn-outline-info" onclick="document.location.href='@Url.Content("~/Ventas/Details/" + elemento.IdPelicula)'">Comprar</a>
+                </div>
+            </div>
+        </div>
+    }
+
+}

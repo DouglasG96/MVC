@@ -1,0 +1,77 @@
+﻿@model MVC.ViewModels.UsuariosViewModel
+@{
+    ViewBag.Title = "Nuevo";
+}
+
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Peliculas</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Peliculas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Index","Usuarios")">Usuarios</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Index","Rentas")">Rentas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Index","Ventas")">Compras</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("LogOff","Home")">Cerrar Sesion</a>
+            </li>
+        </ul>
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Buscar</button>
+        </form>
+    </div>
+</nav>
+
+
+<h3>Nuevo Usuario</h3>
+
+
+@using (Html.BeginForm("Create", "Usuarios", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <!-- Creo label   -->
+                @Html.LabelFor(p => p.Nombres):
+
+                @Html.TextBoxFor(p => p.Nombres, "", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(p => p.Apellidos):
+                @Html.TextBoxFor(p => p.Apellidos, "", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(p => p.Dui):
+                @Html.TextBoxFor(p => p.Dui, "", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(p => p.TelefonoContacto):
+                @Html.TextBoxFor(p => p.Dui, "", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(p => p.CorreoElectronico):
+                @Html.TextBoxFor(p => p.Dui, "", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(p => p.Contrasena):
+                @Html.TextBoxFor(p => p.Dui, "", new { @class = "form-control", @type = "password" })
+            </div>
+            <br />
+            <div style="text-align:center">
+                <input type="submit" class="btn btn-primary" value="Guardar" onclick="document.location.href='@Url.Content("~/Usuarios/Create")'"  />
+            </div>
+        </div>
+    </div>
+}
